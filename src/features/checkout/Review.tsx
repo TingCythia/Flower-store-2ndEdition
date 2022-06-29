@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, FC } from 'react';
 import Typography from '@mui/material/Typography';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -13,39 +13,8 @@ import { render } from 'react-dom';
 
 
 
-/* const products = [
-  {
-    name: 'Product 1',
-    desc: 'A nice thing',
-    price: '$9.99',
-  },
-  {
-    name: 'Product 2',
-    desc: 'Another thing',
-    price: '$3.45',
-  },
-  {
-    name: 'Product 3',
-    desc: 'Something else',
-    price: '$6.51',
-  },
-  {
-    name: 'Product 4',
-    desc: 'Best thing of all',
-    price: '$14.11',
-  },
-  { name: 'Shipping', desc: '', price: 'Free' },
-];*/
-const addresses = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
-const payments = [
-  { name: 'Card type', detail: 'Visa' },
-  { name: 'Card holder', detail: 'Mr John Smith' },
-  { name: 'Card number', detail: 'xxxx-xxxx-xxxx-1234' },
-  { name: 'Expiry date', detail: '04/2024' },
-]; 
 
-
-const ShippingOptions  =[{ name: 'Free shipping', price: 0 }, {name: 'Postnord', price: 29 }, { name: 'DHL', price : 59 }];
+const ShippingOptions  =[{ name: 'Free shipping', price: 0, delivery :" 5-7 working days" }, {name: 'Postnord', price: 29, delivery: " 3-5 working days"}, { name: 'DHL', price : 59, delivery: " 1-2 working days"}];
 
 export default function Review() {
 
@@ -56,83 +25,85 @@ export default function Review() {
     setSelectedOption(Number(value));
   };
 
+
   const numItems = useAppSelector(getMemoizedNumItems );
   const products = useAppSelector((state) => state.products.products);
   const items = useAppSelector((state) => state.cart.items);
   const totalPrice = useAppSelector((getTotalPrice) );
   const total = Number(totalPrice);
 
+  const localData= localStorage.getItem("AddressForm");
+  let  data ;
+  localData ? data = JSON.parse(localData):[];
+  console.log(data)
 
   let selected;
   if (!selectedOption){
    selected = 
-   <Typography variant="h6" gutterBottom>
+   <Typography variant="subtitle1" gutterBottom>
    Include shipping : {total * 1.25}  kr
    </Typography>
   } else {
     selected = 
-    <Typography variant="h6" gutterBottom>
+    <Typography variant="subtitle1" gutterBottom>
     Include shipping: {total * 1.25+selectedOption}  kr
    </Typography> 
   }
 
+  
   return (
     <React.Fragment>
-      <Typography variant="h6" gutterBottom>
+      <Typography variant="h6" style={{fontWeight:"bold"}} gutterBottom>
         Order summary
       </Typography>
       <List disablePadding>
         {Object.entries(items).map(([id,quantity]) => (
           <ListItem key={products[id].id} sx={{ py: 1, px: 0 }}>
-            <ListItemText primary={products[id].name} secondary={products[id].name} />
+            <ListItemText primary={products[id].name}  />
            
-            <Typography variant="body2">{products[id].price}</Typography>
+            <Typography variant="h6">{products[id].price} kr</Typography>
           </ListItem>
         ))}
-{/*         <ListItem sx={{ py: 1, px: 0 }}>
-          <ListItemText primary="Total" />
-          <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-            $34.06
-          </Typography>
-        </ListItem> */}
+
       </List>
-      <Typography variant="h6" gutterBottom>
+      <Typography variant="subtitle1" gutterBottom>
        Number of Products: {numItems}
       </Typography> 
       <Typography variant="h6" gutterBottom>
        Total Price include 25% tax: {total * 1.25}  kr
       </Typography> 
       <Grid container spacing={2}>
-        
+
         <Grid item xs={12} sm={6}>
-        <div>Shipping Option</div>
+        <h3>Shipping address </h3>
+        { Object.entries(data).map(([key, value]) =>{
+        console.log(key);
+        return <>
+        <div>{`${value}`}</div></>
+        })}
+
+
+        <h3>Shipping Option</h3>
         <select onChange={selectChange} >
-        <option selected disabled >
+        <option disabled >
           Choose one
         </option>
         {ShippingOptions.map((shippingOption, index) =>(
            <option key={index} value={shippingOption.price}>
-            {shippingOption.name}
+            {shippingOption.name} 
+            {shippingOption.delivery}
           </option>
-
-        ))}
-                
+        ))}         
       </select>
-
        <div>{selectedOption} KR</div>
-         {/*  <AddressForm /> */}
-          {/* <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
-            Shipping
-          </Typography>
-          <Typography gutterBottom>John Smith</Typography>
-          <Typography gutterBottom>{addresses.join(', ')}</Typography> */}
         </Grid>
         <Grid item container direction="column" xs={12} sm={6}>
-          <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
+          <Typography variant="h6" style={{fontWeight:'bold'}} gutterBottom sx={{ mt: 2 }}>
             Payment details
           </Typography>
           <Grid container>
           {selected}
+
 {/*                    <Typography variant="h6" gutterBottom>
                    Include shipping : {total * 1.25+selectedOption}  kr
                    </Typography> */}
