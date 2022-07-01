@@ -9,11 +9,14 @@ import Nav from "./features/Nav";
 import Footer from "./features/Footer";
 import Navbar from "./features/Navbar";
 import Checkout from "./features/checkout/Checkout"
+import { Confirmation } from "./features/checkout/Confirm";
+import ResponsiveAppBar from "./features/SecondNav";
+import SecondNav from "./features/SecondNav";
 
 function App() {
   return (
     <Router>
-  <div className={styles.app}><Navbar /></div>
+  {/* <div className={styles.app}> */}<SecondNav />{/* </div> */}
 
   
       
@@ -34,12 +37,15 @@ function App() {
           <Cart />
         </Route>
         <Route path="/Checkout">
-          <Checkout />
+          <Checkout />      
         </Route>
-
-
+        <Route path="/Confirm" >
+        <Confirmation />
+        </Route>
+        <Route path="/" component={ResponsiveAppBar}/>
+   
       </Switch>
-      <div><Footer/> </div>
+     {/*  <div> */}<Footer/>{/*  </div> */}
     </Router>
   
   );
