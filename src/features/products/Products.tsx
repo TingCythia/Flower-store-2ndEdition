@@ -69,7 +69,7 @@ const getData = (id:string) =>{
 const buttonItem: CSSProperties = {
   display:'flex',
   flex:"wrap",
-  fontSize:"1.5rem",
+  fontSize:"1rem",
   textDecoration:"none",
   marginBottom:"30px",
   cursor:"pointer",
