@@ -71,18 +71,18 @@ export function Cart() {
 
       </table>
 
-            <div>
-            <span><h3>Total</h3></span>
+            <div style={{marginLeft:"10px"}}>
+            <span><h3>Total before tax</h3></span>
             <span className={styles.total}>{totalPrice} kr</span>
             </div><br></br>
       {totalPrice === "0.00"? (     
         <Link  to="/">
-        <button disabled={true} className={styles.button} type="submit">
+        <button style={{marginLeft:"10px", marginBottom:"20px"}} disabled={true} className={styles.button} type="submit">
           Checkout
         </button></Link>
       ) :
       (<Link  to={`/Checkout/${totalPrice}`}>
-        <button disabled={false} className={styles.button} type="submit">
+        <button style={{marginLeft:"10px", marginBottom:"20px"}} disabled={false} className={styles.button} type="submit">
           Checkout
         </button></Link>
       ) }
