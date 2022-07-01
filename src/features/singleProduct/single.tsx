@@ -30,6 +30,11 @@ return (
  
   <main className="page">
   
+
+
+
+
+  
  <section key={item.id} style={sectionproduct}>
    <div style={sectionproduct}>
    <img style={imgStyle} src={item.imageURL} alt={"/"}  />  
@@ -40,7 +45,7 @@ return (
     <p style={sectionproduct}>{item.description} </p>
     <div style={sectionproduct}>{item.price} kr</div>
   
-    <Link style={sectionproduct} to="/products" ><Button style={sectionproduct} color="inherit">Back to Store</Button></Link>
+    <Link style={sectionproduct} to="/products" ><Button style={sectionproduct} color="inherit"><h3>Back to Store</h3></Button></Link>
     </div>
   </section>
   </main> 
@@ -64,9 +69,10 @@ return (
       justifyContent:"center",
       margin: "auto",
       paddingTop:"30px",
-      width:"600px"
+      maxWidth:"600px"
       }
-      const imgStyle: CSSProperties = {
-     
-        width:"600px"
+      const imgStyle: CSSProperties = {      
+        maxWidth: "100%",
+        maxHeight:" 100vh",
+        margin: "auto",
         }
