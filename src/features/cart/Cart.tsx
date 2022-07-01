@@ -32,8 +32,8 @@ export function Cart() {
 
   return (
     <main className="page">
-      <h1>Shopping Cart</h1>
-      <table className={tableClasses}>
+      <h1 style={{display:'flex', flexDirection:'column', alignItems:'center'}}>Shopping Cart</h1>
+      <table style={{width:"100%", overflowX:'auto'}} className={tableClasses}>
         <thead>
           <tr>
             <th>Image</th>
@@ -68,20 +68,24 @@ export function Cart() {
     </tr>
   ))}
 </tbody>
-        <tfoot>
-          <tr>
-            <td>Total</td>
-            <td></td>
-            <td className={styles.total}>{totalPrice} kr</td>
-            <td></td>
-          </tr>
-        </tfoot>
+
       </table>
-      <Link to={`/Checkout/${totalPrice}`}>
-        <button className={styles.button} type="submit">
+
+            <div style={{marginLeft:"10px"}}>
+            <span><h3>Total before tax</h3></span>
+            <span className={styles.total}>{totalPrice} kr</span>
+            </div><br></br>
+      {totalPrice === "0.00"? (     
+        <Link  to="/">
+        <button style={{marginLeft:"10px", marginBottom:"20px"}} disabled={true} className={styles.button} type="submit">
           Checkout
-        </button>
-      </Link>
+        </button></Link>
+      ) :
+      (<Link  to={`/Checkout/${totalPrice}`}>
+        <button style={{marginLeft:"10px", marginBottom:"20px"}} disabled={false} className={styles.button} type="submit">
+          Checkout
+        </button></Link>
+      ) }
     </main>
   );
 }

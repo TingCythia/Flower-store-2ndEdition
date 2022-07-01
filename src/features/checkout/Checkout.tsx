@@ -16,6 +16,8 @@ import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
 
+
+
 function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
@@ -47,11 +49,15 @@ function getStepContent(step: number) {
 const theme = createTheme();
 
 export default function Checkout() {
+
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
+  
   };
+
+  
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
@@ -87,20 +93,7 @@ export default function Checkout() {
               </Step>
             ))}
           </Stepper>
-          <React.Fragment>
-            {activeStep === steps.length ? (
-              <React.Fragment>
-                <Typography variant="h5" gutterBottom>
-                  Thank you for your order.
-                </Typography>
-                <Typography variant="subtitle1">
-                  Your order number is #2001539. We have emailed your order
-                  confirmation, and will send you an update when your order has
-                  shipped.
-                </Typography>
-                <Link  href="/products" ><Button color="inherit">Back to Store</Button></Link>
-              </React.Fragment>
-            ) : (
+ 
               <React.Fragment>
                 {getStepContent(activeStep)}
                 <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
@@ -109,17 +102,20 @@ export default function Checkout() {
                       Back
                     </Button>
                   )}
-                  <Button
-                    variant="contained"
-                    onClick={handleNext}
-                    sx={{ mt: 3, ml: 1 }}
-                  >
-                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
-                  </Button>
+
+                    {activeStep === steps.length - 1 ? (
+                    <Link href='/Confirm'>
+                    <Button  onClick= {handleNext}
+                    sx={{ mt: 3, ml: 1 }}>
+                      Place order
+                    </Button></Link>
+                  ) :  ( <Button  onClick={handleNext} sx={{ mt: 3, ml: 1 }}>
+                  Next
+                </Button>)}
+
                 </Box>
               </React.Fragment>
-            )}
-          </React.Fragment>
+
         </Paper>
         <Copyright />
       </Container>
