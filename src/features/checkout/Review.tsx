@@ -71,7 +71,7 @@ export default function Review() {
       </Typography> 
       <Typography variant="h6" gutterBottom sx={{fontWeight:700}}>
        Total Price include 25% tax:  </Typography> 
-       <span style={{color:"black"}}>{total * 1.25}  kr</span>
+       <span style={{color:"green"}}>{total * 1.25}  kr</span>
      
       <Grid container spacing={2}>
 
