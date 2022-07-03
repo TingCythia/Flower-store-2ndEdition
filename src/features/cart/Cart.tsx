@@ -39,7 +39,7 @@ export function Cart() {
             <th>Image</th>
             <th>Product</th>
             <th>Quantity</th>
-            <th>Total</th>
+            <th>Price</th>
             <th>Remove</th>
           </tr>
         </thead>
@@ -71,18 +71,18 @@ export function Cart() {
 
       </table>
 
-            <div style={{marginLeft:"10px"}}>
-            <span><h3>Total before tax</h3></span>
+            <div style={{marginLeft:"20px"}}>
+            <span><h3>Total</h3></span>
             <span className={styles.total}>{totalPrice} kr</span>
             </div><br></br>
       {totalPrice === "0.00"? (     
         <Link  to="/">
-        <button style={{marginLeft:"10px", marginBottom:"20px"}} disabled={true} className={styles.button} type="submit">
+        <button  style={{marginLeft:"20px"}} disabled={true} className={styles.button} type="submit">
           Checkout
         </button></Link>
       ) :
-      (<Link  to={`/Checkout/${totalPrice}`}>
-        <button style={{marginLeft:"10px", marginBottom:"20px"}} disabled={false} className={styles.button} type="submit">
+      (<Link style={{marginLeft:"20px"}} to={`/Checkout`}>
+        <button disabled={false} className={styles.button} type="submit">
           Checkout
         </button></Link>
       ) }

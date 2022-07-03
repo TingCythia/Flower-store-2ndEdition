@@ -69,14 +69,15 @@ export default function Review() {
       <Typography variant="subtitle1" gutterBottom>
        Number of Products: {numItems}
       </Typography> 
-      <Typography variant="h6" gutterBottom>
-       Total Price include 25% tax: {total * 1.25}  kr
-      </Typography> 
+      <Typography variant="h6" gutterBottom sx={{fontWeight:700}}>
+       Total Price include 25% tax:  </Typography> 
+       <span style={{color:"black"}}>{total * 1.25}  kr</span>
+     
       <Grid container spacing={2}>
 
         <Grid item xs={12} sm={6}>
         <h3>Shipping address </h3>
-        { Object.entries(data).map(([key, value]) =>{
+        {data !== null && Object.entries(data).map(([key, value]) =>{
         console.log(key);
         return <>
         <div>{`${value}`}</div></>
@@ -98,29 +99,27 @@ export default function Review() {
        <div>{selectedOption} KR</div>
         </Grid>
         <Grid item container direction="column" xs={12} sm={6}>
-          <Typography variant="h6" style={{fontWeight:'bold'}} gutterBottom sx={{ mt: 2 }}>
+          <Typography variant="h6" style={{fontWeight:700}} gutterBottom sx={{ mt: 2.5 }}>
             Payment details
           </Typography>
-          <Grid container>
+          
+          <Grid container style={{color:"blue", fontWeight:700}}>
           {selected}
-
-{/*                    <Typography variant="h6" gutterBottom>
-                   Include shipping : {total * 1.25+selectedOption}  kr
-                   </Typography> */}
-     
-{/*             {payments.map((payment) => (
-              <React.Fragment key={payment.name}>
-                <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.name}</Typography>
-                </Grid>
-                <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.detail}</Typography>
-                </Grid>
-              </React.Fragment>
-            ))} */}
+          </Grid>
+          <Grid item container direction="column" xs={12} sm={6}>
+          <Typography variant="h6" style={{fontWeight:700}} gutterBottom sx={{ mt: 2 }}>
+            Payment Method
+          </Typography>
+          
+          <Grid container style={{color:"blue"}}>
+          {localStorage.getItem("PaymentMethod")}
           </Grid>
         </Grid>
+        </Grid>
+
+        
       </Grid>
+      
     </React.Fragment>
   );
 }

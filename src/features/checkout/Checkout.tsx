@@ -15,6 +15,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
+import { useState } from 'react';
+import { LocalGasStation } from '@mui/icons-material';
 
 
 
@@ -54,14 +56,25 @@ export default function Checkout() {
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
-  
-  };
 
-  
+  };
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
+
+ 
+  const [isValid, setIsValid] = useState(false);
+
+  React.useEffect(() => {
+    if (localStorage.getItem("AddressForm")!==null || undefined) {
+        setIsValid(false);
+    } else {
+        setIsValid(true);
+    }
+}, []);
+
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -103,15 +116,23 @@ export default function Checkout() {
                     </Button>
                   )}
 
-                    {activeStep === steps.length - 1 ? (
+      {activeStep === steps.length - 1 ?
+       
                     <Link href='/Confirm'>
                     <Button  onClick= {handleNext}
                     sx={{ mt: 3, ml: 1 }}>
                       Place order
                     </Button></Link>
-                  ) :  ( <Button  onClick={handleNext} sx={{ mt: 3, ml: 1 }}>
-                  Next
-                </Button>)}
+                  
+                  :  
+   
+   (<Button 
+        onClick={handleNext} 
+        sx={{ mt: 3, ml: 1 }}>
+         Next
+         </Button>)
+                 
+       }
 
                 </Box>
               </React.Fragment>
