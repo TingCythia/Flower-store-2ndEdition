@@ -18,14 +18,14 @@ First is shipping address, using Formik and Yup to validate Address information,
 Once confirm all the order and click "place order", page will reload and router to "Thank you page", once order proceed can not go back to buy it again, need to make a new order. 
 
 Goal for godkänt:
-1.Git & GitHub har använts
-2.Projektmappen innehåller en README.md fil - (läs ovan för mer info)
-3.Uppgiften lämnas in innan deadline!
-4.Ett designsystem används
-5.React Router skall användas som navigation. Exempelvis så skall produkten som visas på produktsidan ska baseras på en parameter i url’en.
-6.React context skall användas för hantering av kundvagnen.
-7.Samtliga fält ska ha valideringsregler (tips, se Material UI:s dokumentation)
-8.Sidan ska vara fullt responsiv
-9.Mockade produkter ska ligga i en egen fil och vara typade med ett TS interface
+✔1.Git & GitHub har använts
+✔2.Projektmappen innehåller en README.md fil - (läs ovan för mer info)
+✔3.Uppgiften lämnas in innan deadline!
+✔4.Ett designsystem används
+✔5.React Router skall användas som navigation. Exempelvis så skall produkten som visas på produktsidan ska baseras på en parameter i url’en.
+✔6.React context skall användas för hantering av kundvagnen.
+✔7.Samtliga fält ska ha valideringsregler (tips, se Material UI:s dokumentation)
+✔8.Sidan ska vara fullt responsiv
+✔9.Mockade produkter ska ligga i en egen fil och vara typade med ett TS interface
 
  
