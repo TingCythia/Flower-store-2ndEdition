@@ -1,5 +1,10 @@
 # Flower-store-2nd
+
 Github link:https://github.com/TingCythia/Flower-store-2ndEdition
+
+old Github link: https://github.com/TingCythia/flower-store#flower-store
+
+REMINDER: "FORMIK & YUP" validation is all English, dont accept Swedish vocabulary in Checkout part, please fill in the right information to proceed. 
 
 1. Website layout 
 The logic flow is in the beginning design website layout, using Material UI for the Header, background page, and footer. 
