@@ -31,7 +31,7 @@ export function Cart() {
    });
 
   return (
-    <main className="page">
+    <main className="page" style={{marginBottom:"50px"}}>
       <h1 style={{display:'flex', flexDirection:'column', alignItems:'center'}}>Shopping Cart</h1>
       <table style={{width:"100%", overflowX:'auto'}} className={tableClasses}>
         <thead>
