@@ -106,7 +106,7 @@ export default function Review() {
           <Grid container style={{color:"blue", fontWeight:700}}>
           {selected}
           </Grid>
-          <Grid item container direction="column" xs={12} sm={6}>
+          <Grid item container direction="column" xs={12} sm={6} style={{display:"contents"}}>
           <Typography variant="h6" style={{fontWeight:700}} gutterBottom sx={{ mt: 2 }}>
             Payment Method
           </Typography>
