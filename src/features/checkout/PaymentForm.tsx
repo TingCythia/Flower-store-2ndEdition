@@ -1,4 +1,4 @@
-import * as React from 'react'
+import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
@@ -23,6 +23,7 @@ export default function PaymentForm() {
 
   const handlePaymentMethodChange = (event: React.ChangeEvent<HTMLInputElement>) =>{
     setPaymentMethod(event.target.value);
+    localStorage.setItem("PaymentMethod", event.target.value)
   } 
   
   
@@ -84,9 +85,9 @@ control=
        
                 </Box>
 
-                <Button variant="outlined" color="primary" sx={{mb: "30px" }}>
+{/*                 <Button variant="outlined" color="primary" sx={{mb: "30px" }}>
                   Submit
-                </Button>
+                </Button> */}
 
                 <Divider sx={{
             mb: "1.5rem",
@@ -155,12 +156,12 @@ control=
                   </Grid>
        
                 </Box>
-
+{/* 
                 <Button variant="outlined" color="primary" sx={{
             mb: "30px"
           }}>
                   Submit
-                </Button>
+                </Button> */}
 
                 <Divider sx={{
             mb: "1.5rem",
@@ -226,11 +227,11 @@ control=
        
                 </Box>
 
-                <Button variant="outlined" color="primary" sx={{
+       {/*          <Button variant="outlined" color="primary" sx={{
             mb: "30px"
           }}>
                   Submit
-                </Button>
+                </Button> */}
 
                 <Divider sx={{
             mb: "1.5rem",
@@ -253,31 +254,42 @@ const initialValues = {
   cvv: "",
   email:"",
   password:"",
-  shipping_zip: "",
-  shipping_country: "",
-  shipping_address1: "",
-  shipping_address2: "",
-  billing_name: "",
-  billing_email: "",
-  billing_contact: "",
-  billing_company: "",
-  billing_zip: "",
-  billing_country: "",
-  billing_address1: "",
-  billing_address2: ""
 };
 const checkoutSchema = yup.object().shape({
-  card_no: yup.string().required("required"),
-  name: yup.string().required("required"),
-  exp_date: yup.string().required("required"),
-  cvv: yup.string().required("required") // shipping_zip: yup.string().required("required"),
-  // shipping_country: yup.object().required("required"),
-  // shipping_address1: yup.string().required("required"),
-  // billing_name: yup.string().required("required"),
-  // billing_email: yup.string().required("required"),
-  // billing_contact: yup.string().required("required"),
-  // billing_zip: yup.string().required("required"),
-  // billing_country: yup.string().required("required"),
-  // billing_address1: yup.string().required("required"),
-
+  card_no: yup.string()
+  .label('Card number')
+  .max(16)
+  .matches(/^[0-9]+$/, "enter valid number")
+  .required("required"),
+  name: yup.string()
+  .label('Name on card')
+  .required("required"),
+  exp_date: yup.string()
+  .typeError('Not a valid expiration date. Example: MM/YY')
+  .max(5, 'Not a valid expiration date. Example: MM/YY')
+  .matches(
+    /([0-9]{2})\/([0-9]{2})/,
+    'Not a valid expiration date. Example: MM/YY'
+  )
+  .required('Expiration date is required'),
+  cvv: yup.string()
+  .label('CVC')
+  .min(3)
+  .max(4)
+  .required("required") ,
+  phone_no: yup.string()
+  .matches(/^([+]46)\s*(7[0236])\s*(\d{4})\s*(\d{3})$/, "enter valid phone number")
+  .required('Phone number is required'),
+  amount:yup.string()
+  .max(5)
+  .matches(/^[0-9]+$/, "enter valid price")
+  .required('Amount is required'),
+  email: yup.string().email()
+  .required('Email is required'),
+  password: yup.string()
+  .required('Please Enter your password')
+  .matches(
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+    "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+  ),
 });

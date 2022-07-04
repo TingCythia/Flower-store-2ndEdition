@@ -7,8 +7,8 @@ import Checkbox from '@mui/material/Checkbox';
 import { useFormik, Formik, FormikHelpers } from 'formik';
 import * as yup from "yup";
 import { Box, Button} from '@mui/material';
-
-
+import { useState } from "react";
+import { Link, useHistory } from 'react-router-dom';
 
 
 const initialValues= {
@@ -38,6 +38,7 @@ interface FormValues{
 
 
 export default function AddressForm(){
+ 
   const checkoutSchema = yup.object().shape({
     firstName:yup.string()
         .required("Name is required")
@@ -60,7 +61,6 @@ export default function AddressForm(){
     country: yup.string().required("Country is required")
     .max(15)
     .matches(/^[A-Za-z ]*$/, 'Please enter valid country name'),
-    state: yup.string().required(),
     city: yup.string().required("City is required")
     .max(15)
     .matches(/^[A-Za-z ]*$/, 'Please enter valid city name'),
@@ -69,11 +69,16 @@ export default function AddressForm(){
     .matches(/^[0-9]+$/, "Must be valid ZIP "),
 });
 
+
+
 const handleSubmit =( values: FormValues, formikHelpers: FormikHelpers<FormValues>)=>{
   alert("Your information has been summitted!");
   formikHelpers.setSubmitting(false);
   localStorage.setItem("AddressForm", JSON.stringify(values));
 };
+
+
+
 
   return (
     <React.Fragment>
@@ -86,7 +91,7 @@ const handleSubmit =( values: FormValues, formikHelpers: FormikHelpers<FormValue
         validationSchema={checkoutSchema}  
         onSubmit={(values, errors) => {
         handleSubmit(values, errors);
-       
+        
       }}
         >
       {
@@ -98,7 +103,7 @@ const handleSubmit =( values: FormValues, formikHelpers: FormikHelpers<FormValue
         handleBlur,
         handleSubmit
       })=>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} >
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
           <TextField
@@ -223,15 +228,19 @@ const handleSubmit =( values: FormValues, formikHelpers: FormikHelpers<FormValue
           />
         </Grid>
       </Grid>
-    
-      <Button
+  
+              <Button
                     variant="contained"
                     sx={{ mt: 3, ml: 1 }}
                     color="secondary"
                     type="submit"
+    
                   >
-      Submit address
+                 
+   Please Summit First 
+ 
       </Button>
+
       </form>
       }
       </Formik>}

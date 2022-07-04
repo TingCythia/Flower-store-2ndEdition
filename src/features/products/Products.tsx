@@ -47,7 +47,7 @@ const getData = (id:string) =>{
               <div>
                 <h1>{product.name}</h1>
                
-                <p style={{fontSize:"1.5re"}}>{product.price} kr</p>
+                <p style={{fontSize:"1.5rem"}}>{product.price} kr</p>
                 
                 <button style={buttonItem} onClick={() => dispatch(addToCart(product.id))}>Add to Cart 🛒</button>
                 <div>
